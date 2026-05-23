@@ -4,10 +4,23 @@
 #include "../include/Provider.h"
 #include "../include/Driver.h"
 #include "../include/Admin.h"
+#include "../include/AuthenticationService.h"
 
 using namespace std;
 
 int main() {
+
+    AuthenticationService authService;
+
+    Customer customer;
+    Provider provider;
+    Driver driver;
+    Admin admin;
+
+    authService.registerCustomer(customer);
+    authService.registerProvider(provider);
+    authService.registerDriver(driver);
+    authService.registerAdmin(admin);
 
     int choice;
 
@@ -30,33 +43,27 @@ int main() {
 
     switch(choice) {
 
-        case 1: {
-            Customer customer;
+        case 1:
             customer.displayMenu();
             break;
-        }
 
-        case 2: {
-            Provider provider;
+        case 2:
             provider.displayMenu();
             break;
-        }
 
-        case 3: {
-            Driver driver;
+        case 3:
             driver.displayMenu();
             break;
-        }
 
-        case 4: {
-            Admin admin;
+        case 4:
             admin.displayMenu();
             break;
-        }
 
         default:
             cout << "Invalid choice." << endl;
     }
+
+    authService.showSystemUsers();
 
     return 0;
 }
