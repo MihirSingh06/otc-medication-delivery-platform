@@ -7,6 +7,8 @@
 #include "../include/AuthenticationService.h"
 #include "../include/InventoryService.h"
 #include "../include/Medication.h"
+#include "../include/Order.h"
+#include "../include/OrderService.h"
 
 using namespace std;
 
@@ -14,6 +16,7 @@ int main() {
 
     AuthenticationService authService;
     InventoryService inventoryService;
+    OrderService orderService;
 
     Customer customer;
     Provider provider;
@@ -30,6 +33,13 @@ int main() {
 
     inventoryService.addMedication(med1);
     inventoryService.addMedication(med2);
+
+    Order order1(5001);
+
+    order1.addMedication(med1);
+    order1.addMedication(med2);
+
+    orderService.createOrder(order1);
 
     int choice;
 
@@ -75,6 +85,8 @@ int main() {
     authService.showSystemUsers();
 
     inventoryService.displayInventory();
-    
+
+    orderService.displayOrders();
+
     return 0;
 }
