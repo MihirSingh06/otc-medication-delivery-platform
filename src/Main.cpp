@@ -5,12 +5,15 @@
 #include "../include/Driver.h"
 #include "../include/Admin.h"
 #include "../include/AuthenticationService.h"
+#include "../include/InventoryService.h"
+#include "../include/Medication.h"
 
 using namespace std;
 
 int main() {
 
     AuthenticationService authService;
+    InventoryService inventoryService;
 
     Customer customer;
     Provider provider;
@@ -21,6 +24,12 @@ int main() {
     authService.registerProvider(provider);
     authService.registerDriver(driver);
     authService.registerAdmin(admin);
+    
+    Medication med1(101, "Panado", 49.99, 20);
+    Medication med2(102, "Allergex", 79.99, 15);
+
+    inventoryService.addMedication(med1);
+    inventoryService.addMedication(med2);
 
     int choice;
 
@@ -65,5 +74,7 @@ int main() {
 
     authService.showSystemUsers();
 
+    inventoryService.displayInventory();
+    
     return 0;
 }
